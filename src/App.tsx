@@ -1,7 +1,14 @@
 import React from 'react'
+import NoteEditor from 'containers/NoteEditor'
+import NoteList from 'containers/NoteList'
 
 const App: React.FC = () => {
-  return <div></div>
+  return (
+    <div className='app'>
+      <NoteList />
+      <NoteEditor />
+    </div>
+  )
 }
 
 export default App

@@ -1,5 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from 'App'
+import 'styles/index.scss'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import { Provider } from 'react-redux'
+import store from './store'
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+
+// for live reloding HMR
+if (module.hot) {
+  module.hot.accept()
+}
