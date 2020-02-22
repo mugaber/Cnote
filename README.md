@@ -15,5 +15,4 @@ this app is highly inspired by this awesome open-source project
 
 # additions
 
-using fetch and redux-sagas to get notes data from github gist page
-configure sagas in the redux-store
+add note functionality in the navigation bar

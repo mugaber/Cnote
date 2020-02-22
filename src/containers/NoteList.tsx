@@ -3,6 +3,7 @@ import { Dispatch } from 'redux'
 import { swapNote } from 'actions'
 import { connect } from 'react-redux'
 import { NoteItem } from 'types'
+import Navigation from './Navigation'
 
 interface NoteListProps {
   notes: NoteItem[]
@@ -12,6 +13,7 @@ interface NoteListProps {
 const NoteList: React.FC<NoteListProps> = ({ notes, swapNote }) => {
   return (
     <aside className='note__sidebar'>
+      <Navigation />
       <div className='note__list'>
         {notes.map(note => {
           const noteTitle =
