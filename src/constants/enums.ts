@@ -1,6 +1,3 @@
-// string enum will give us run time meaningful and readable value
-// independent of the enum member name (key)
-
 export enum actionTypes {
   ADD_NOTE = 'ADD_NOTE',
   SWAP_NOTE = 'SWAP_NOTE',

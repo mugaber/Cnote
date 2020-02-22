@@ -40,6 +40,17 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js, jsx, ts, tsx, json, css, scss, md}": [
+      "prettier --no-semi --write --tab-width 2 --single-quote --trailing-comma es5 --print-with 80",
+      "git add"
+    ]
+  },
   "prettier": {
     "semi": false,
     "tabWidth": 2,

@@ -15,11 +15,5 @@ this app is highly inspired by this awesome open-source project
 
 # additions
 
-in this commit i have added the redux boilerplate and connected the redux store
-with the app using the Provider
-
-there are only two reducers note and active and three actions related to the note
-
-there are only two containers NoteList and NoteEditor to represent the codeMirror editor
-
-there some basic styling in the styles folder, i'm leaving styling for later
+using fetch and redux-sagas to get notes data from github gist page
+configure sagas in the redux-store
