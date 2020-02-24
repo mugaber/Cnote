@@ -15,4 +15,4 @@ this app is highly inspired by this awesome open-source project
 
 # additions
 
-add note functionality in the navigation bar
+remove note functionality in the navigation bar

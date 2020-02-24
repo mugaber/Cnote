@@ -11,13 +11,21 @@ body {
   min-height: 100vh;
 }
 
-.note__editor {
+.note__editor,
+.note__editor--empty {
   width: 100%;
   .CodeMirror {
     height: 100%;
     font-size: 16px;
     font-weight: 600;
   }
+}
+
+.note__editor--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(54, 52, 43, 0.219);
 }
 
 .note__sidebar {
@@ -28,13 +36,25 @@ body {
 .note__title {
   padding: 0.8rem;
   cursor: pointer;
-  border-bottom: fuchsia solid 2px;
+  border-bottom: rgba(0, 119, 255, 0.479) solid 2px;
+
   &:hover {
-    background-color: rgba(255, 0, 255, 0.192);
+    background-color: rgba(91, 246, 225, 0.356);
   }
 }
 
+.active {
+  border-left: 3px solid green;
+}
+
 .note__navigation {
+  display: flex;
   padding: 0.8rem;
   background-color: gray;
+  .nav__button {
+    cursor: pointer;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+  }
 }
