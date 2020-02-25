@@ -19,10 +19,13 @@ const noteReducer = (state = initialState, action) => {
       return {
         ...state,
         notes: payload,
-        active: payload[0].id,
+        active: payload.length ? payload[0].id : '',
         loading: false,
         error: null,
       }
+
+    case actionTypes.SYNC_NOTES_SUCCESS:
+      return { ...state, notes: payload }
 
     case actionTypes.LOAD_NOTES_ERROR:
       return { ...state, loading: false, error: payload }
@@ -31,7 +34,6 @@ const noteReducer = (state = initialState, action) => {
       return { ...state, notes: [...state.notes, payload] }
 
     case actionTypes.DELETE_NOTE:
-      // if there are notes before filtering
       if (state.notes.length) {
         let activeIndex
 
@@ -39,9 +41,7 @@ const noteReducer = (state = initialState, action) => {
           if (note.id === payload) activeIndex = index
           return note.id !== payload
         })
-        // if there are still notes after filtering
         if (updatedNotes.length) {
-          // update the activeIndex
           if (updatedNotes.length - 1 < activeIndex)
             activeIndex = updatedNotes.length - 1
 
@@ -50,7 +50,6 @@ const noteReducer = (state = initialState, action) => {
             notes: updatedNotes,
             active: updatedNotes[activeIndex].id,
           }
-          // if there were no notes after filtering
         } else {
           return { ...state, notes: [] }
         }

@@ -4,3 +4,8 @@ export interface NoteItem {
   created: string
   lastUpdated: string
 }
+
+export interface SyncReducer {
+  syncing: boolean
+  error: string
+}

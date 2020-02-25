@@ -24,3 +24,8 @@ export const swapNote = (noteId: string) => ({
 export const loadNotes = () => ({
   type: actionTypes.LOAD_NOTES,
 })
+
+export const syncNotes = (notes: NoteItem[]) => ({
+  type: actionTypes.SYNC_NOTES,
+  payload: notes,
+})

@@ -1,6 +1,3 @@
-// we are going to add active from the note state
-// in order to style the active note on the nav-bar
-
 import React from 'react'
 import { Dispatch } from 'redux'
 import { swapNote } from 'actions'
