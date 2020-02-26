@@ -4,6 +4,7 @@ import { swapNote } from 'actions'
 import { connect } from 'react-redux'
 import { NoteItem } from 'types'
 import Navigation from './Navigation'
+import { getTitle } from 'helpers'
 
 interface NoteListProps {
   active: string
@@ -17,10 +18,7 @@ const NoteList: React.FC<NoteListProps> = ({ active, notes, swapNote }) => {
       <Navigation />
       <div className='note__list'>
         {notes.map(note => {
-          const noteTitle =
-            note.text.indexOf('\n') !== -1
-              ? note.text.slice(0, note.text.indexOf('\n'))
-              : note.text.slice(0, 40)
+          const noteTitle = getTitle(note.text)
 
           return (
             <div

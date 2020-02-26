@@ -4,6 +4,7 @@ import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { addNote, swapNote, deleteNote, syncNotes } from 'actions'
 import { NoteItem } from 'types'
+import { downloadNote } from 'helpers'
 
 interface NavigationProps {
   notes: NoteItem[]
@@ -44,6 +45,12 @@ const Navigation: React.FC<NavigationProps> = ({
         onClick={() => activeNote && deleteNote(activeNote.id)}
       >
         &#10007; Note
+      </button>
+      <button
+        className='nav__button'
+        onClick={() => activeNote && downloadNote(activeNote.text)}
+      >
+        &#8623; Note
       </button>
       <button className='nav__button' onClick={() => syncNotes(notes)}>
         &#8645; Notes

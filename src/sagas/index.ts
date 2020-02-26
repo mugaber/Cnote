@@ -12,9 +12,7 @@ function* fetchNotes() {
   }
 }
 
-// the action that this saga will listen to will have the notes as payload
 function* syncingNotes(action) {
-  console.log(action)
   try {
     const data = yield setLocalNotes(action)
 

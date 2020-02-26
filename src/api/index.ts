@@ -1,4 +1,3 @@
-// to get the notes from localStorage
 export const getLocalNotes = () => {
   return new Promise((resolve, reject) => {
     const data = localStorage.getItem('localNotes') || '[]'
@@ -10,10 +9,8 @@ export const getLocalNotes = () => {
   })
 }
 
-// to set the notes to localStorage payload: NoteItem[]
 export const setLocalNotes = ({ payload }) => {
   return new Promise((resolve, reject) => {
-    console.log(payload)
     try {
       localStorage.setItem('localNotes', JSON.stringify(payload))
     } catch (err) {
