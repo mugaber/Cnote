@@ -2,26 +2,28 @@ import React from 'react'
 import uuid from 'uuid/v4'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { addNote, swapNote, deleteNote, syncNotes } from 'actions'
-import { NoteItem } from 'types'
+import { addNote, swapNote, deleteNote, syncState } from 'actions'
+import { NoteItem, CategoryItem } from 'types'
 import { downloadNote } from 'helpers'
 
 interface NavigationProps {
   notes: NoteItem[]
+  categories: CategoryItem[]
   activeNote: NoteItem
   addNote: Function
   swapNote: Function
   deleteNote: Function
-  syncNotes: Function
+  syncState: Function
 }
 
 const Navigation: React.FC<NavigationProps> = ({
   notes,
+  categories,
   activeNote,
   addNote,
   swapNote,
   deleteNote,
-  syncNotes,
+  syncState,
 }) => {
   return (
     <div className='note__navigation'>
@@ -38,22 +40,28 @@ const Navigation: React.FC<NavigationProps> = ({
           swapNote(newNote.id)
         }}
       >
-        + Note
+        &#43;
       </button>
+
       <button
         className='nav__button'
         onClick={() => activeNote && deleteNote(activeNote.id)}
       >
-        &#10007; Note
+        &#10007;
       </button>
+
       <button
         className='nav__button'
         onClick={() => activeNote && downloadNote(activeNote.text)}
       >
-        &#8623; Note
+        &#8623;
       </button>
-      <button className='nav__button' onClick={() => syncNotes(notes)}>
-        &#8645; Notes
+
+      <button
+        className='nav__button'
+        onClick={() => syncState(notes, categories)}
+      >
+        &#8645;
       </button>
     </div>
   )
@@ -61,6 +69,7 @@ const Navigation: React.FC<NavigationProps> = ({
 
 const mapStateToProps = state => ({
   notes: state.note.notes,
+  categories: state.category.categories,
   activeNote: state.note.notes.find(note => note.id === state.note.active),
 })
 
@@ -68,7 +77,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   addNote: note => dispatch(addNote(note)),
   swapNote: noteId => dispatch(swapNote(noteId)),
   deleteNote: noteId => dispatch(deleteNote(noteId)),
-  syncNotes: notes => dispatch(syncNotes(notes)),
+  syncState: (notes, categories) => dispatch(syncState(notes, categories)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

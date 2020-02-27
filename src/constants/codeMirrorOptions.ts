@@ -1,6 +1,6 @@
 export default {
   mode: 'gfm',
-  theme: 'dracula',
+  theme: 'eclipse',
   lineNumbers: true,
   lineWrapping: 'wrap',
   styleActiveLine: { nonEmpty: true },

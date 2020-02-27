@@ -1,7 +1,8 @@
 import { actionTypes } from 'constants/enums'
 import { put, all, takeLatest } from 'redux-saga/effects'
-import { getLocalNotes, setLocalNotes } from 'api'
+import { getLocalNotes, getLocalCategories, syncLocalState } from 'api'
 
+//
 function* fetchNotes() {
   try {
     const data = yield getLocalNotes()
@@ -12,20 +13,32 @@ function* fetchNotes() {
   }
 }
 
-function* syncingNotes(action) {
+//
+function* fetchCategories() {
   try {
-    const data = yield setLocalNotes(action)
-
-    yield put({ type: actionTypes.SYNC_NOTES_SUCCESS, payload: data })
+    const data = yield getLocalCategories()
+    yield put({ type: actionTypes.LOAD_CATEGORIES_SUCCESS, payload: data })
   } catch (err) {
-    yield put({ type: actionTypes.SYNC_NOTES_ERROR, payload: err.message })
+    yield put({ type: actionTypes.LOAD_CATEGORIES_ERROR, payload: err.message })
   }
 }
 
+//
+function* syncingState(action) {
+  try {
+    yield syncLocalState(action)
+    yield put({ type: actionTypes.SYNC_STATE_SUCCESS })
+  } catch (err) {
+    yield put({ type: actionTypes.SYNC_STATE_ERROR, payload: err.message })
+  }
+}
+
+//
 function* rootSaga() {
   yield all([
     takeLatest(actionTypes.LOAD_NOTES, fetchNotes),
-    takeLatest(actionTypes.SYNC_NOTES, syncingNotes),
+    takeLatest(actionTypes.LOAD_CATEGORIES, fetchCategories),
+    takeLatest(actionTypes.SYNC_STATE, syncingState),
   ])
 }
 

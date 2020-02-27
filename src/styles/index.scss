@@ -1,3 +1,5 @@
+@import 'sidebar';
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -6,18 +8,20 @@ body {
 .app {
   display: flex;
   flex-direction: row;
-  border: 3px solid #41393975;
   box-sizing: border-box;
   min-height: 100vh;
+  max-width: 100vw;
 }
 
+// editor
 .note__editor,
 .note__editor--empty {
   width: 100%;
+  border: 2px solid #41393998;
   .CodeMirror {
     height: 100%;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
   }
 }
 
@@ -25,36 +29,42 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(54, 52, 43, 0.219);
+  background-color: rgba(29, 28, 26, 0.219);
 }
 
-.note__sidebar {
-  width: 22%;
-  background-color: #beebe9;
+// note list
+.notelist__sidebar {
+  width: 30%;
+  background-color: #fafafa;
 }
 
 .note__title {
   padding: 0.8rem;
   cursor: pointer;
-  border-bottom: rgba(0, 119, 255, 0.479) solid 2px;
+  border-bottom: rgba(38, 39, 38, 0.479) solid 1.2px;
 
   &:hover {
-    background-color: rgba(91, 246, 225, 0.356);
+    background-color: #a1a2a349;
   }
 }
 
 .active {
-  border-left: 3px solid green;
+  background-color: rgba(165, 167, 165, 0.13);
 }
 
+// navigation
 .note__navigation {
   display: flex;
   padding: 0.8rem;
-  background-color: gray;
+  border-bottom: rgba(34, 32, 30, 0.705) 2px solid;
   .nav__button {
     cursor: pointer;
     display: flex;
     margin: auto;
+    border-radius: 20%;
     justify-content: center;
+    color: white;
+    background-color: rgba(47, 47, 51, 0.808);
+    font-size: large;
   }
 }

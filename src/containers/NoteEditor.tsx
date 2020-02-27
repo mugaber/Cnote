@@ -8,7 +8,7 @@ import { Controlled as CodeMirror } from 'react-codemirror2'
 import options from 'constants/codeMirrorOptions'
 import 'codemirror/addon/selection/active-line.js'
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/dracula.css'
+import 'codemirror/theme/eclipse.css'
 import 'codemirror/mode/gfm/gfm.js'
 
 interface NoteEditorProps {

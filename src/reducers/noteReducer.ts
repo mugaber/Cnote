@@ -24,9 +24,6 @@ const noteReducer = (state = initialState, action) => {
         error: null,
       }
 
-    case actionTypes.SYNC_NOTES_SUCCESS:
-      return { ...state, notes: payload }
-
     case actionTypes.LOAD_NOTES_ERROR:
       return { ...state, loading: false, error: payload }
 

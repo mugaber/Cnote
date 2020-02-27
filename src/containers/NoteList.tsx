@@ -14,7 +14,7 @@ interface NoteListProps {
 
 const NoteList: React.FC<NoteListProps> = ({ active, notes, swapNote }) => {
   return (
-    <aside className='note__sidebar'>
+    <aside className='notelist__sidebar'>
       <Navigation />
       <div className='note__list'>
         {notes.map(note => {
@@ -26,7 +26,8 @@ const NoteList: React.FC<NoteListProps> = ({ active, notes, swapNote }) => {
                 active === note.id ? 'note__title active' : 'note__title'
               }
               key={note.id}
-              onClick={() => swapNote(note.id)}
+              // do not fire if clicked the active note
+              onClick={() => active !== note.id && swapNote(note.id)}
             >
               {noteTitle}
             </div>
