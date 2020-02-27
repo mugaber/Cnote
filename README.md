@@ -15,15 +15,12 @@ this app is highly inspired by this awesome open-source project
 
 ## additions
 
-basic app sidebar
+add category functionality
 
-category reducer for note categories or maybe later notebooks
+move loadNotes and loadCategories to the App component
 
-loadCategories as well as loadNotes will be fired once the app loads
-if there is no notes or categories this will result in an error only
-apparent in the store and if sync made will not happend again
+some basic styles and change styles-folder structure
+defined min and max width for editor
 
-syncState will sync both notes and categories and will not fail
-because if localStorage is empty will provide empty array as a string
-
-some basic changes to the style
+deleted onChange in the NoteEditor > CodeMirror becaue it was
+causing the note to go to the last line when updating the note

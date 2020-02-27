@@ -1,0 +1,19 @@
+.note__editor,
+.note__editor--empty {
+  // solved the problem of overflow when writing one line
+  min-width: 65%;
+  max-width: 65%;
+  border: 2px solid #41393998;
+  .CodeMirror {
+    height: 100%;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.note__editor--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(29, 28, 26, 0.219);
+}

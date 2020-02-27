@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react'
-import { loadCategories } from 'actions'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { addCategory } from 'actions'
+import { CategoryItem } from 'types'
+import uuid from 'uuid/v4'
 
-const Sidebar = ({ loadCategories }) => {
-  useEffect(() => {
-    loadCategories()
-  }, [loadCategories])
+interface SidebarProps {
+  categories: CategoryItem[]
+  addCategory: Function
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ categories, addCategory }) => {
+  const [addNewCategory, setAddNewCategory] = useState(false)
+  const [newCategory, setNewCategory] = useState('')
 
   return (
     <aside className='note__sidebar'>
@@ -15,13 +21,54 @@ const Sidebar = ({ loadCategories }) => {
 
       <div className='sidebar__item'>Categories</div>
 
-      <div className='sidebar__item'>Add Category</div>
+      {!!categories.length && (
+        <div>
+          {categories.map(category => (
+            <div className='category__item' key={category.id}>
+              {category.name}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {addNewCategory && (
+        <form
+          className='category__form'
+          onSubmit={event => {
+            event.preventDefault()
+            const category = { id: uuid(), name: newCategory }
+            addCategory(category)
+            setAddNewCategory(false)
+            setNewCategory('')
+          }}
+        >
+          <input
+            type='text'
+            autoFocus
+            placeholder='add new category'
+            onChange={event => setNewCategory(event.target.value)}
+          />
+        </form>
+      )}
+
+      <div className='sidebar__item'>
+        <button
+          className='category__button'
+          onClick={() => !addNewCategory && setAddNewCategory(true)}
+        >
+          Add Category
+        </button>
+      </div>
     </aside>
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  loadCategories: () => dispatch(loadCategories()),
+const mapStateToProps = state => ({
+  categories: state.category.categories,
 })
 
-export default connect(null, mapDispatchToProps)(Sidebar)
+const mapDispatchToProps = dispatch => ({
+  addCategory: category => dispatch(addCategory(category)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

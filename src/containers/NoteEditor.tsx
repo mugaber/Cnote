@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { updateNote, loadNotes } from 'actions'
+import { updateNote } from 'actions'
 import { NoteItem } from 'types'
 
 import { Controlled as CodeMirror } from 'react-codemirror2'
@@ -14,20 +14,14 @@ import 'codemirror/mode/gfm/gfm.js'
 interface NoteEditorProps {
   note: NoteItem
   loading: boolean
-  loadNotes: Function
   updateNote: Function
 }
 
 const NoteEditor: React.FC<NoteEditorProps> = ({
   note,
   loading,
-  loadNotes,
   updateNote,
 }) => {
-  useEffect(() => {
-    loadNotes()
-  }, [loadNotes])
-
   if (loading) {
     return <div className='note__editor--empty' />
   } else if (!note) {
@@ -40,10 +34,6 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
         options={options}
         onBeforeChange={(editor, data, value) => {
           updateNote({ id: note.id, text: value })
-        }}
-        onChange={editor => {
-          editor.focus()
-          editor.setCursor(editor.lineCount(), 0)
         }}
         editorDidMount={editor => {
           editor.focus()
@@ -61,7 +51,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateNote: note => dispatch(updateNote(note)),
-  loadNotes: () => dispatch(loadNotes()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteEditor)

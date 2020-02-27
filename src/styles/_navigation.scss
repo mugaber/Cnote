@@ -1,0 +1,15 @@
+.note__navigation {
+  display: flex;
+  padding: 0.8rem;
+  border-bottom: rgba(34, 32, 30, 0.705) 2px solid;
+  .nav__button {
+    cursor: pointer;
+    display: flex;
+    margin: auto;
+    border-radius: 20%;
+    justify-content: center;
+    color: white;
+    background-color: rgba(47, 47, 51, 0.808);
+    font-size: large;
+  }
+}

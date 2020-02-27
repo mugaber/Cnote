@@ -28,6 +28,37 @@
   cursor: pointer;
 
   &:hover {
-    background: palevioletred;
+    background: #3b3b3b98;
   }
+}
+
+.category__item {
+  cursor: pointer;
+  padding: 0.3rem 2rem;
+  &:hover {
+    background: #3b3b3b98;
+  }
+}
+
+.category__form {
+  text-align: center;
+
+  input {
+    width: 90%;
+    padding: 0.5rem;
+    color: #fefeff;
+    background: rgba(0, 0, 0, 0.555);
+    border: 1px solid rgba(136, 136, 136, 0.767);
+  }
+}
+
+.category__button {
+  width: 100%;
+  display: block;
+  padding: 0.3rem;
+  cursor: pointer;
+  background: transparent;
+  font-weight: 600;
+  border: none;
+  color: white;
 }

@@ -1,6 +1,7 @@
 import { actionTypes } from 'constants/enums'
 import { NoteItem, CategoryItem } from 'types'
 
+// notes
 export const addNote = (note: NoteItem) => ({
   type: actionTypes.ADD_NOTE,
   payload: note,
@@ -23,6 +24,12 @@ export const swapNote = (noteId: string) => ({
 
 export const loadNotes = () => ({
   type: actionTypes.LOAD_NOTES,
+})
+
+// categories
+export const addCategory = (category: CategoryItem) => ({
+  type: actionTypes.ADD_CATEGORY,
+  payload: category,
 })
 
 export const loadCategories = () => ({
